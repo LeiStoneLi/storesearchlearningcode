@@ -23,6 +23,7 @@ class SearchViewController: UIViewController {
         cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
         tableView.rowHeight = 80
+        searchBar.becomeFirstResponder()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
