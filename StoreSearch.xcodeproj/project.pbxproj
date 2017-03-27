@@ -13,6 +13,9 @@
 		C43755A11E863FD0003B5B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43755A01E863FD0003B5B21 /* Assets.xcassets */; };
 		C43755A41E863FD0003B5B21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43755A21E863FD0003B5B21 /* LaunchScreen.storyboard */; };
 		C43755AC1E865E9D003B5B21 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43755AB1E865E9D003B5B21 /* SearchResult.swift */; };
+		C47CB5501E88A16000C82FB1 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47CB54F1E88A16000C82FB1 /* SearchResultCell.xib */; };
+		C47CB5521E88AC7500C82FB1 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CB5511E88AC7500C82FB1 /* SearchResultCell.swift */; };
+		C47CB5541E88B31300C82FB1 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47CB5531E88B31300C82FB1 /* NothingFoundCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		C43755A31E863FD0003B5B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C43755A51E863FD0003B5B21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43755AB1E865E9D003B5B21 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		C47CB54F1E88A16000C82FB1 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		C47CB5511E88AC7500C82FB1 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		C47CB5531E88B31300C82FB1 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 				C43755A21E863FD0003B5B21 /* LaunchScreen.storyboard */,
 				C43755A51E863FD0003B5B21 /* Info.plist */,
 				C43755AB1E865E9D003B5B21 /* SearchResult.swift */,
+				C47CB54F1E88A16000C82FB1 /* SearchResultCell.xib */,
+				C47CB5511E88AC7500C82FB1 /* SearchResultCell.swift */,
+				C47CB5531E88B31300C82FB1 /* NothingFoundCell.xib */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -128,6 +137,8 @@
 			files = (
 				C43755A41E863FD0003B5B21 /* LaunchScreen.storyboard in Resources */,
 				C43755A11E863FD0003B5B21 /* Assets.xcassets in Resources */,
+				C47CB5501E88A16000C82FB1 /* SearchResultCell.xib in Resources */,
+				C47CB5541E88B31300C82FB1 /* NothingFoundCell.xib in Resources */,
 				C437559F1E863FD0003B5B21 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +152,7 @@
 			files = (
 				C437559C1E863FD0003B5B21 /* SearchViewController.swift in Sources */,
 				C43755AC1E865E9D003B5B21 /* SearchResult.swift in Sources */,
+				C47CB5521E88AC7500C82FB1 /* SearchResultCell.swift in Sources */,
 				C437559A1E863FD0003B5B21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +313,7 @@
 				C43755AA1E863FD0003B5B21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
