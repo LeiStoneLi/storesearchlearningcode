@@ -18,6 +18,7 @@ class SearchResult {
     var currency = ""
     var price = 0.0
     var genre = ""
+    
 }
 
 func < (rsh: SearchResult, lsh: SearchResult) -> Bool {
