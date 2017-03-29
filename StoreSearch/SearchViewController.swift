@@ -10,15 +10,19 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var searchResults: [SearchResult] = []
     var hasSearched = false
     var isLoading = false
     var dataTask: URLSessionDataTask?
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        performSearch()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         var cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
         cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
@@ -41,9 +45,20 @@ class SearchViewController: UIViewController {
         static let loadingCell = "LoadingCell"
     }
     
-    func iTunesURL(searchText: String) ->URL {
+    func iTunesURL(searchText: String, category: Int) ->URL {
+        let entityName: String
+        switch category {
+        case 1:
+            entityName = "musicTrack"
+        case 2:
+            entityName = "software"
+        case 3:
+            entityName = "ebook"
+        default:
+            entityName = ""
+        }
         let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200", escapedSearchText)
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, entityName)
         let url = URL(string: urlString)
         return url!
     }
@@ -138,7 +153,7 @@ class SearchViewController: UIViewController {
         searchResult.artistName = dictionary["artistName"] as! String
         searchResult.artworkSmallURL = dictionary["artworkUrl60"] as! String
         searchResult.artworkLargeURL = dictionary["artworkUrl100"] as! String
-        searchResult.storeURL = dictionary["collectionViewUrl"] as! String
+        searchResult.storeURL = dictionary["trackViewUrl"] as! String
         searchResult.kind = dictionary["kind"] as! String
         searchResult.currency = dictionary["currency"] as! String
         
@@ -157,7 +172,7 @@ class SearchViewController: UIViewController {
         searchResult.artistName = dictionary["artistName"] as! String
         searchResult.artworkSmallURL = dictionary["artworkUrl60"] as! String
         searchResult.artworkLargeURL = dictionary["artworkUrl100"] as! String
-        searchResult.storeURL = dictionary["collectionViewUrl"] as! String
+        searchResult.storeURL = dictionary["trackViewUrl"] as! String
         searchResult.kind = dictionary["kind"] as! String
         searchResult.currency = dictionary["currency"] as! String
         
@@ -206,6 +221,10 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+    func performSearch() {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             
@@ -217,7 +236,7 @@ extension SearchViewController: UISearchBarDelegate {
             hasSearched = true
             searchResults = []
             
-            let url = iTunesURL(searchText: searchBar.text!)
+            let url = iTunesURL(searchText: searchBar.text!, category: segmentedControl.selectedSegmentIndex)
             
             let session = URLSession.shared
             
