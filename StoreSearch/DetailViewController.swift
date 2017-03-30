@@ -29,6 +29,7 @@ class DetailViewController: UIViewController {
     deinit {
         print("deinit \(self)")
         downloadTask?.cancel()
+//        NotificationCenter.default.removeObserver(NSNotification.Name.UIContentSizeCategoryDidChange)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,9 @@ class DetailViewController: UIViewController {
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
         view.addGestureRecognizer(gestureRecognizer)
-        
+//        nameLabel.adjustsFontForContentSizeCategory = true
+//        NotificationCenter.default.addObserver(self, selector: #selector(preferredContentSizeChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+
         if let _ = searchResult {
             updateUI()
         }
@@ -89,8 +92,14 @@ class DetailViewController: UIViewController {
         if let largeUrl = URL(string: searchResult.artworkLargeURL) {
             downloadTask = artworkImageView.loadImage(url: largeUrl)
         }
-
     }
+    
+//    func preferredContentSizeChanged() {
+//        self.nameLabel.font = UIFont.preferredFont(forTextStyle : .headline)
+//        self.artistNameLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+//        self.kindLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+//        self.genreLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+//    }
     /*
     // MARK: - Navigation
 
