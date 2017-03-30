@@ -227,7 +227,7 @@ extension SearchViewController: UISearchBarDelegate {
             dataTask = session.dataTask(with: url, completionHandler: {
                 data, response, error in
                 print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
-                if let error = error as? NSError, error.code == -999 {
+                if let error = error as NSError?, error.code == -999 {
                     return
                 } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     if let data = data, let jsonDictionary = self.parse(json: data) {
