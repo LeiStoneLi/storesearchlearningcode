@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pxW-dU-GhK" id="q6b-0S-9Mb">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="PsK-q1-hH6">
@@ -25,25 +25,26 @@
                             <constraint firstAttribute="width" constant="60" id="eyr-Ca-fNP"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6x0-Tn-B2W">
-                        <rect key="frame" x="90" y="15" width="222" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6x0-Tn-B2W">
+                        <rect key="frame" x="90" y="15" width="222" height="20.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ays-ST-V8u">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ays-ST-V8u">
                         <rect key="frame" x="90" y="44" width="222" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                         <color key="textColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="PsK-q1-hH6" firstAttribute="centerY" secondItem="q6b-0S-9Mb" secondAttribute="centerY" id="14g-OH-3dm"/>
                     <constraint firstItem="PsK-q1-hH6" firstAttribute="leading" secondItem="q6b-0S-9Mb" secondAttribute="leading" constant="15" id="2iP-8b-b4W"/>
-                    <constraint firstItem="PsK-q1-hH6" firstAttribute="top" secondItem="q6b-0S-9Mb" secondAttribute="top" constant="10" id="56G-aN-bSD"/>
                     <constraint firstAttribute="bottom" secondItem="ays-ST-V8u" secondAttribute="bottom" constant="17" id="5CI-bT-IXK"/>
                     <constraint firstItem="ays-ST-V8u" firstAttribute="leading" secondItem="PsK-q1-hH6" secondAttribute="trailing" constant="15" id="9Co-Mm-wll"/>
                     <constraint firstAttribute="trailing" secondItem="6x0-Tn-B2W" secondAttribute="trailing" constant="8" id="BEf-Xz-Hu8"/>
+                    <constraint firstItem="ays-ST-V8u" firstAttribute="top" secondItem="6x0-Tn-B2W" secondAttribute="bottom" constant="8.5" id="Cin-OG-nzy"/>
                     <constraint firstAttribute="trailing" secondItem="ays-ST-V8u" secondAttribute="trailing" constant="8" id="IRB-PG-Gf4"/>
                     <constraint firstItem="6x0-Tn-B2W" firstAttribute="top" secondItem="q6b-0S-9Mb" secondAttribute="top" constant="15" id="SLC-Su-mI5"/>
                     <constraint firstItem="6x0-Tn-B2W" firstAttribute="leading" secondItem="PsK-q1-hH6" secondAttribute="trailing" constant="15" id="rgj-2r-rkg"/>
