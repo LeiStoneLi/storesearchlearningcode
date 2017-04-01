@@ -16,7 +16,7 @@ class LandscapeViewController: UIViewController {
     var searchResults: [SearchResult] = []
     
     private var firstTime = true
-    
+    private var downloadTasks = [URLSessionDownloadTask]()
     @IBAction func pageChanged(_ sender: UIPageControl) {
         UIView.animate(withDuration: 0.3, delay: 0, options: [ .curveEaseInOut], animations: {
             self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
@@ -93,14 +93,16 @@ class LandscapeViewController: UIViewController {
         var x = marginX
         
         for (index, searchResult) in searchReuslts.enumerated() {
-            let button = UIButton(type: .system)
-            button.backgroundColor = UIColor.white
-            button.setTitle("\(index)", for: .normal)
+            let button = UIButton(type: .custom)
+            button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
+//            button.backgroundColor = UIColor.white
+//            button.setTitle("\(index)", for: .normal)
             
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row) * itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
             
             scrollView.addSubview(button)
-            
+            downloadImage(for: searchResult, andPlaceOn: button)
+
             row += 1
             
             if row == rowsPerPage {
@@ -129,8 +131,29 @@ class LandscapeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func downloadImage(for searchResult: SearchResult, andPlaceOn button: UIButton) {
+        if let url = URL(string: searchResult.artworkSmallURL) {
+            print(searchResult.artworkSmallURL)
+            let downloadTask = URLSession.shared.downloadTask(with: url) {
+                [weak button] url, response, error in
+                if error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        if let button = button {
+                            button.setImage(image, for: .normal)
+                        }
+                    }
+                }
+            }
+            downloadTask.resume()
+            downloadTasks.append(downloadTask)
+        }
+    }
+    
     deinit {
         print("deinit \(self)")
+        for task in downloadTasks {
+            task.cancel()
+        }
     }
     /*
     // MARK: - Navigation
