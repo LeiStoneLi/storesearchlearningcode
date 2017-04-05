@@ -13,7 +13,7 @@ class LandscapeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var searchResults: [SearchResult] = []
+    var search: Search!
     
     private var firstTime = true
     private var downloadTasks = [URLSessionDownloadTask]()
@@ -51,7 +51,7 @@ class LandscapeViewController: UIViewController {
         
         if firstTime {
             firstTime = false
-            titleButtons(searchResults)
+            titleButtons(search.searchResults)
         }
     }
     
