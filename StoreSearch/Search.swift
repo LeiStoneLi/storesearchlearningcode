@@ -61,6 +61,7 @@ class Search {
                 self.state = .notSearchedYet
                 var success = false
                 if let error = error as NSError?, error.code == -999 {
+                    print("Error: \(error)")
                     return
                 }
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200, let data = data, let jsonDictionary = self.parse(json: data) {
@@ -101,13 +102,16 @@ class Search {
         }
         */
         let entityName = category.entityName
+        let locale = Locale.autoupdatingCurrent
+        let language = locale.identifier
+        let countryCode = locale.regionCode ?? "en_US"
+        
         let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, entityName)
+        let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=%@&lang=%@&country=%@", escapedSearchText, entityName, language, countryCode)
         let url = URL(string: urlString)
+        print("URL: \(url!)")
         return url!
     }
-    
-    
     
     private func parse(json data: Data) -> [String: Any]? {
         do {

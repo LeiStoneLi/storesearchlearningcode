@@ -8,6 +8,19 @@
 
 import Foundation
 
+private let displayNamesForKind = [
+    "album": NSLocalizedString("Album", comment: "Localized kind: Album"),
+    "audiobook": NSLocalizedString("Audio Book", comment: "Localized kind: Audio Book"),
+    "book": NSLocalizedString("Book", comment: "Localized kind: Book"),
+    "ebook": NSLocalizedString("E-Book", comment: "Localized kind: E-Book"),
+    "feature-movie": NSLocalizedString("Movie", comment: "Localized kind: Feature Movie"),
+    "music-video": NSLocalizedString("Music Video", comment: "Localized kind: Music Video"),
+    "podcast": NSLocalizedString("Podcast", comment: "Localized kind: Podcast"),
+    "software": NSLocalizedString("App", comment: "Localized kind: Software"),
+    "song": NSLocalizedString("Song", comment: "Localized kind: Song"),
+    "tv-episode": NSLocalizedString("TV Episode", comment: "Localized kind: TV Episode"),
+]
+
 class SearchResult {
     var name: String = ""
     var artistName: String = ""
@@ -18,30 +31,43 @@ class SearchResult {
     var currency = ""
     var price = 0.0
     var genre = ""
-    
+    /*
     func kindForDisplay() -> String {
         switch kind {
         case "album":
-            return "Album"
+            return NSLocalizedString("Album", comment: "Localized kind: Album")
         case "audiobook":
-            return "Audio Book"
+            return NSLocalizedString("Audio Book", comment: "Localized kind: Audio Book")
         case "book":
-            return "Ebook"
+            return NSLocalizedString("Book", comment: "Localized kind: Book")
+        case "ebook":
+            return NSLocalizedString("E-book", comment: "Localized kind: E-book")
         case "feature-movie":
-            return "Movie"
+            return NSLocalizedString("Movie", comment: "Localized kind: Movie")
         case "music-video":
-            return "Music Video"
+            return NSLocalizedString("Music Video", comment: "Localized kind: Music Video")
         case "podcast":
-            return "Podcast"
+            return NSLocalizedString("Podcast", comment: "Localized kind: Podcast")
         case "software":
-            return "App"
+            return NSLocalizedString("App", comment: "Localized kind: App")
         case "song":
-            return "Song"
+            return NSLocalizedString("Song", comment: "Localized kind: Song")
         case "tv-episode":
-            return "TV Episode"
+            return NSLocalizedString("TV Episode", comment: "Localized kind: TV Episode")
         default:
             return kind
         }
+    }
+    */
+    func kindForDisplay() -> String {
+        /*
+        if let name = displayNamesForKind[kind] {
+            return name
+        } else {
+            return kind
+        }
+        */
+        return displayNamesForKind[kind] ?? kind
     }
 
 }
