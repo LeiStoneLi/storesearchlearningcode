@@ -11,6 +11,7 @@
 		C40DC8621E94F5FE001A856D /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40DC8641E94F5FE001A856D /* LoadingCell.xib */; };
 		C40DC8691E95DF16001A856D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C40DC8671E95DF16001A856D /* Localizable.strings */; };
 		C40DC86F1E95ED80001A856D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C40DC8711E95ED80001A856D /* InfoPlist.strings */; };
+		C40DC8751E9736F8001A856D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40DC8741E9736F8001A856D /* MenuViewController.swift */; };
 		C4112FE31E8D01EB00F61BED /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4112FE21E8D01EB00F61BED /* BounceAnimationController.swift */; };
 		C4112FE51E8D13F900F61BED /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4112FE41E8D13F900F61BED /* SlideOutAnimationController.swift */; };
 		C4112FE71E8D1A4A00F61BED /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4112FE61E8D1A4A00F61BED /* LandscapeViewController.swift */; };
@@ -39,6 +40,7 @@
 		C40DC8701E95ED80001A856D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C40DC8721E95ED82001A856D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C40DC8731E961516001A856D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C40DC8741E9736F8001A856D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		C4112FE21E8D01EB00F61BED /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		C4112FE41E8D13F900F61BED /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		C4112FE61E8D1A4A00F61BED /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				C4D483FE1E8DF8E300DBFC8B /* FadeOutAnimationController.swift */,
 				C4116D281E8FB0740043A1F8 /* Search.swift */,
 				C40DC8711E95ED80001A856D /* InfoPlist.strings */,
+				C40DC8741E9736F8001A856D /* MenuViewController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				C47CB5521E88AC7500C82FB1 /* SearchResultCell.swift in Sources */,
 				C4112FE31E8D01EB00F61BED /* BounceAnimationController.swift in Sources */,
 				C4112FE71E8D1A4A00F61BED /* LandscapeViewController.swift in Sources */,
+				C40DC8751E9736F8001A856D /* MenuViewController.swift in Sources */,
 				C4C538661E8B7F4600ECA50C /* DetailViewController.swift in Sources */,
 				C4C538641E8B5A1300ECA50C /* UIImageView+DownloadImage.swift in Sources */,
 				C437559A1E863FD0003B5B21 /* AppDelegate.swift in Sources */,
@@ -360,6 +364,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bingshenginc.telemed.learn.StoreSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -372,6 +377,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bingshenginc.telemed.learn.StoreSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

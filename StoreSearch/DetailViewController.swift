@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class DetailViewController: UIViewController {
     
@@ -18,7 +19,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     
-    var searchResult: SearchResult!
+    var searchResult: SearchResult! {
+        didSet {
+            if isViewLoaded {
+                updateUI()
+            }
+        }
+    }
+    
     var downloadTask: URLSessionDownloadTask?
     
     enum AnimationStyle {
@@ -27,7 +35,7 @@ class DetailViewController: UIViewController {
     }
     
     var dismissAnimationStyle = AnimationStyle.fade
-    
+    var isPopUp = false
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         modalPresentationStyle = .custom
@@ -45,10 +53,20 @@ class DetailViewController: UIViewController {
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         popupView.layer.cornerRadius = 10
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
+        if isPopUp {
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            view.addGestureRecognizer(gestureRecognizer)
+            
+            view.backgroundColor = UIColor.clear
+        } else {
+            view.backgroundColor = UIColor(patternImage: UIImage(named:"LandscapeBackground")!)
+            popupView.isHidden = true
+            if let displayName = Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"] as? String {
+                title = displayName
+            }
+        }
 //        nameLabel.adjustsFontForContentSizeCategory = true
 //        NotificationCenter.default.addObserver(self, selector: #selector(preferredContentSizeChanged), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
 
@@ -102,6 +120,20 @@ class DetailViewController: UIViewController {
         if let largeUrl = URL(string: searchResult.artworkLargeURL) {
             downloadTask = artworkImageView.loadImage(url: largeUrl)
         }
+        
+        /*
+        UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: { _ in
+            self.popupView.isHidden = false
+        }, completion: { _ in })
+        */
+        
+        self.popupView.isHidden = false
+        self.popupView.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            self.popupView.alpha = 1
+        }, completion: { (finished) in
+        })
+
     }
     
 //    func preferredContentSizeChanged() {
@@ -110,15 +142,18 @@ class DetailViewController: UIViewController {
 //        self.kindLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
 //        self.genreLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
 //    }
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowMenu" {
+            let controller = segue.destination as! MenuViewController
+            controller.delegate = self
+        }
     }
-    */
 
 }
 
@@ -144,5 +179,31 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
 extension DetailViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return (touch.view === self.view)
+    }
+}
+
+extension DetailViewController: MenuViewControllerDelegate {
+    func menuViewControllerSendSupportEmail(_ controller: MenuViewController) {
+        dismiss(animated: true) {
+            if MFMailComposeViewController.canSendMail() {
+                print("Can send mail")
+                let controller = MFMailComposeViewController()
+                controller.setSubject(NSLocalizedString("Support Request",
+                                                        comment: "Email subject"))
+                controller.setToRecipients(["your@email-address-here.com"])
+                controller.mailComposeDelegate = self
+                controller.modalPresentationStyle = .formSheet
+                self.present(controller, animated: true, completion: nil)
+                
+            } else {
+                print("Can't send mail")
+            }
+        }
+    }
+}
+
+extension DetailViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
     }
 }
